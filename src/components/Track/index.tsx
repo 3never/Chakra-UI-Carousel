@@ -50,7 +50,7 @@ const Track: React.FC<TrackPropsType> = ({ children }) => {
   const handleDragStart = () => setDragStartPosition(positions[activeItem]);
 
   const handleDragEnd = (_: any, info: any) => {
-    console.log(info);
+    // console.log(info);
     const distance = info.offset.x;
     const velocity = info.velocity.x * multiplier;
     const direction = velocity < 0 || distance < 0 ? 1 : -1;
@@ -146,7 +146,7 @@ const Track: React.FC<TrackPropsType> = ({ children }) => {
   }, [handleClick, handleResize, handleKeyDown, positions]);
 
   useEffect(() => {
-    console.log("activeItem", activeItem);
+    // console.log("activeItem", activeItem);
   }, [activeItem]);
 
   return (

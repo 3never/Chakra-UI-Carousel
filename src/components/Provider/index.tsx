@@ -1,4 +1,4 @@
-import React, { createContext, useCallback, useMemo, useState } from "react";
+import React, { createContext, useCallback, useMemo, useState, useEffect } from "react";
 
 export interface ContextType {
   trackIsActive: boolean;
@@ -21,9 +21,10 @@ export const Context = createContext<ContextType | undefined>(undefined);
 
 interface ProviderProps {
   children: React.ReactNode;
+  current: Function;
 }
 
-export const Provider: React.FC<ProviderProps> = ({ children }) => {
+export const Provider: React.FC<ProviderProps> = ({ children,current }) => {
   const [trackIsActive, setTrackIsActive] = useState(false);
   const [multiplier, setMultiplier] = useState(0.35);
   const [sliderWidth, setSliderWidth] = useState(0);
@@ -36,7 +37,9 @@ export const Provider: React.FC<ProviderProps> = ({ children }) => {
     (width: number) => setSliderWidth(width),
     []
   );
-
+  useEffect(() => {
+    current(activeItem)
+  }, [activeItem]);
   const value = useMemo(
     () => ({
       trackIsActive,

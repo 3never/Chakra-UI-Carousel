@@ -8,9 +8,10 @@ import Track from "../Track";
 export interface CarouselPropTypes {
   children: React.ReactNode[];
   gap: number;
+  full: boolean;
 }
 
-export const Carousel: React.FC<CarouselPropTypes> = ({ children, gap }) => {
+export const Carousel: React.FC<CarouselPropTypes> = ({ children, gap, full }) => {
   const context = useContext(Context);
 
   const {
@@ -19,6 +20,8 @@ export const Carousel: React.FC<CarouselPropTypes> = ({ children, gap }) => {
     setMultiplier,
     setConstraint,
     itemWidth,
+
+    activeItem,
     setPositions,
   } = context as ContextType;
 
@@ -28,7 +31,6 @@ export const Carousel: React.FC<CarouselPropTypes> = ({ children, gap }) => {
     const newPositions = children?.map(
       (_, index) => -Math.abs((itemWidth + gap) * index)
     );
-
     setPositions(newPositions);
   }, [children, gap, itemWidth, setPositions]);
 
@@ -43,21 +45,28 @@ export const Carousel: React.FC<CarouselPropTypes> = ({ children, gap }) => {
   const [isGreaterThanXL] = useMediaQuery(`(min-width: ${breakpoints?.xl})`);
 
   useEffect(() => {
-    if (isBetweenBaseAndMd) {
+    if (full) {
       setItemWidth(sliderWidth - gap);
-      setMultiplier(0.65);
+      setMultiplier(0.8);
       setConstraint(1);
+    }else{
+      if (isBetweenBaseAndMd) {
+        setItemWidth(sliderWidth - gap);
+        setMultiplier(0.65);
+        setConstraint(1);
+      }
+      if (isBetweenMdAndXl) {
+        setItemWidth(sliderWidth / 2 - gap);
+        setMultiplier(0.5);
+        setConstraint(2);
+      }
+      if (isGreaterThanXL) {
+        setItemWidth(sliderWidth / 3 - gap);
+        setMultiplier(0.35);
+        setConstraint(3);
+      }
     }
-    if (isBetweenMdAndXl) {
-      setItemWidth(sliderWidth / 2 - gap);
-      setMultiplier(0.5);
-      setConstraint(2);
-    }
-    if (isGreaterThanXL) {
-      setItemWidth(sliderWidth / 3 - gap);
-      setMultiplier(0.35);
-      setConstraint(3);
-    }
+    
   }, [
     isBetweenBaseAndMd,
     isBetweenMdAndXl,
