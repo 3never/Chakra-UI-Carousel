@@ -1,14 +1,14 @@
 {
-  "name": "chakra-ui-carousel",
-  "version": "1.0.6",
+  "name": "@threenever/chakra-ui-carousel",
+  "version": "1.0.7",
   "description": "An experiment for tight-knit Chakra+Formik integration with a familiar API",
   "keywords": [
     "chakra",
     "chakra-ui",
     "carousel"
   ],
-  "main": "dist/chakra-ui-carousel.cjs.js",
-  "module": "dist/chakra-ui-carousel.esm.js",
+  "main": "dist/threenever-chakra-ui-carousel.cjs.js",
+  "module": "dist/threenever-chakra-ui-carousel.esm.js",
   "types": "dist/chakra-ui-carousel.cjs.d.ts",
   "author": "Nazeeh Vahora",
   "homepage": "https://github.com/Nazeeh21/Chakra-UI-Carousel",
@@ -21,6 +21,7 @@
     "dist"
   ],
   "scripts": {
+    "fix": "preconstruct fix",
     "build": "preconstruct build",
     "build:clean": "rimraf dist && preconstruct build",
     "lint": "eslint ./src --ext .ts,.tsx",

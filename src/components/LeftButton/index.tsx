@@ -10,7 +10,7 @@ import React, { useContext } from "react";
 import { Context, ContextType } from "../Provider";
 
 interface CustomButtonProps extends ButtonProps {
-  customIcon?: ComponentWithAs<"svg", IconProps> | React.Element;
+  customIcon?: JSX.Element;
 }
 
 export const LeftButton = ({
