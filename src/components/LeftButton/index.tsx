@@ -37,7 +37,7 @@ export const LeftButton = ({
         {...props}
         onClick={handleDecrementClick}
         onFocus={handleFocus}
-        zIndex={2}
+        zIndex={0}
         minW={0}
       >
         {customIcon ? <Box>{customIcon}</Box> : <ChevronLeftIcon boxSize={9} />}

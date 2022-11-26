@@ -34,7 +34,7 @@ export const RightButton = ({ customIcon, ...props }: CustomButtonProps) => {
         {...props}
         onClick={handleIncrementClick}
         onFocus={handleFocus}
-        zIndex={2}
+        zIndex={0}
         minW={0}
       >
         {customIcon ? (
